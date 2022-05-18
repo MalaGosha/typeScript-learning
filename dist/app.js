@@ -52,6 +52,7 @@ const taskDoneStatus = task[2];
 addTask({ name: taskName, category: taskCategory, done: taskDoneStatus });
 renderCategories(categories, categoriesContainerElement, updateSelectedCategory);
 renderTasks(tasks, tasksContainerElement);
+// type unknown
 let get = (response) => response;
 const logFixed = (v) => {
     console.log(v.toFixed());

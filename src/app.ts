@@ -53,18 +53,22 @@ addButtonElement.addEventListener("click", (e: Event) => {
     renderTasks(tasks, tasksContainerElement);
 });
 
-type TaskAsTuple = [string, Category, boolean]
+type TaskAsTuple = [string, Category, boolean];
 
-const task: [string, Category, boolean] = ["zrobić nogi", Category.GYM, false];
+const task: TaskAsTuple = ["zrobić nogi", Category.GYM, false];
 const taskName = task[0];
 const taskCategory = task[1];
 const taskDoneStatus = task[2];
 
 
-addTask({name:taskName, category: taskCategory,  done: taskDoneStatus});
+addTask({name:taskName, category: taskCategory, done: taskDoneStatus});
 renderCategories(categories, categoriesContainerElement, updateSelectedCategory);
 renderTasks(tasks, tasksContainerElement);
 
+
+
+
+// type unknown
 let get =(response: unknown) => response;
 
 const logFixed = (v: number) => {
