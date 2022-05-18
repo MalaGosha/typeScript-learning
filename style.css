@@ -1,0 +1,76 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgba(70,70,71,0.89);
+}
+
+.container {
+    justify-content: center;
+    text-align: center;
+    background-color:rgba(248,248,249,0.89);
+    margin: 20px;
+    padding: 30px;
+    width: 30%;
+    height: 70%;
+    border-radius: 5px;
+}
+
+input {
+    padding: 14px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+li {
+    list-style-type: none;
+}
+
+button {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 45%;
+    padding: 20px;
+    background-color: gray;
+    border-radius: 5px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #b0aeae;
+}
+
+.categories li {
+    align-items: center;
+    display: flex;
+    list-style-type: none;
+}
+
+.categories input {
+    margin-right: 8px;
+}
+
+.tasks input {
+    margin-left: 8px;
+}
+
+.gym {
+    color: #1818c5;
+    list-style: circle;
+}
+
+.hobby {
+    color: #b93102;
+}
+
+.work {
+    text-decoration: underline;
+    color: darkgreen;
+}
