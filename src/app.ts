@@ -81,3 +81,65 @@ let value = get(2.3);
 if (typeof value === "number"){
     logFixed(value);
 }
+
+
+
+// interface vs type alias
+type TaskType = {
+    name: string;
+    done: boolean;
+    category?: Category;
+}
+
+interface TaskInterface {
+    name: string;
+    done: boolean;
+    category?: Category;
+}
+
+interface TaskInterface {
+    createdAt: Date;
+}
+
+let newTask: TaskInterface; // mozna też zapisać --> let newTask: TaskType;
+
+newTask = {
+    name: "nowy task",
+    done: true,
+    createdAt: new Date(),
+}
+
+/*
+let newTask: TaskType;
+
+newTask = {
+    name: "nowy task",
+    done: true,
+}
+
+type Category = "work" | "hobby" | "general"; // interface Category = "work" | "hobby" | "general"; NIE ZADZIAŁA bo używamy obiektów do określania interface
+type CategoryAndNumber = Category | number;*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
