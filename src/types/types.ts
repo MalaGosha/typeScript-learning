@@ -1,7 +1,19 @@
-export interface Task {
-    name: string;
-    done: boolean;
-    category?: Category;
+export class Task {
+    public name: string;
+    public done: boolean;
+    public category?: Category;
+    private createdAt: Date;
+
+    constructor(name: string, done: boolean, category?: Category) {
+        this.name = name;
+        this.done = done;
+        this.category = category;
+        this.createdAt = new Date();
+    }
+
+    public logCreationDate (extra: string) {
+        console.log(`Task został stworzony ${this.createdAt} ${extra || ""}`);
+    }
 }
 
 export enum Category {
@@ -11,3 +23,4 @@ export enum Category {
     HOBBY = "hobby",
     SOCIAL = "social",
 }
+

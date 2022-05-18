@@ -1,4 +1,4 @@
-import { Category } from "./types/types.js";
+import { Category, Task } from "./types/types.js";
 import renderTasks from "./helpers/render-tasks.helper.js";
 import { render as renderCategories } from "./helpers/render-categories.helper.js";
 const taskNameInputElement = document.querySelector("#name");
@@ -14,21 +14,9 @@ const categories = [
     Category.SOCIAL,
 ];
 const tasks = [
-    {
-        name: "Wyrzucić śmieci",
-        done: false,
-        category: Category.GENERAL
-    },
-    {
-        name: "Pójść na siłkę",
-        done: true,
-        category: Category.GYM
-    },
-    {
-        name: "Nakarmić koty",
-        done: true,
-        category: Category.GENERAL
-    },
+    new Task("Wyrzucić śmieci", false, Category.HOBBY),
+    new Task("Zrobić zakupy", true, Category.WORK),
+    new Task("Umyć okna", true),
 ];
 const addTask = (task) => {
     tasks.push(task);
@@ -38,36 +26,66 @@ const updateSelectedCategory = (newCategory) => {
 };
 addButtonElement.addEventListener("click", (e) => {
     e.preventDefault();
-    addTask({
-        name: taskNameInputElement.value,
-        done: false,
-        category: selectedCategory,
-    });
+    const newTask = new Task(taskNameInputElement.value, false, selectedCategory);
+    addTask(newTask);
+    newTask.logCreationDate("!!!");
     renderTasks(tasks, tasksContainerElement);
 });
-const task = ["zrobić nogi", Category.GYM, false];
-const taskName = task[0];
-const taskCategory = task[1];
-const taskDoneStatus = task[2];
-addTask({ name: taskName, category: taskCategory, done: taskDoneStatus });
 renderCategories(categories, categoriesContainerElement, updateSelectedCategory);
 renderTasks(tasks, tasksContainerElement);
+// classes
+const taskClassInstance = new Task("Zadanie z constructora", true, Category.GYM);
+console.log(taskClassInstance.name);
+/*
+TYPE TUPLE
+type TaskAsTuple = [string, Category, boolean];
+const task: TaskAsTuple = ["zrobić nogi", Category.GYM, false];
+const taskName = task[0];
+const taskCategory = task[1];
+const taskDoneStatus = task[2];*/
+/*
+
 // type unknown
-let get = (response) => response;
-const logFixed = (v) => {
+let get =(response: unknown) => response;
+
+const logFixed = (v: number) => {
     console.log(v.toFixed());
-};
+}
+
 logFixed(2.1);
+
 let value = get(2.3);
-if (typeof value === "number") {
+if (typeof value === "number"){
     logFixed(value);
 }
-let newTask; // mozna też zapisać --> let newTask: TaskType;
+
+
+
+// interface vs type alias
+type TaskType = {
+    name: string;
+    done: boolean;
+    category?: Category;
+}
+
+interface TaskInterface {
+    name: string;
+    done: boolean;
+    category?: Category;
+}
+
+interface TaskInterface {
+    createdAt: Date;
+}
+
+let newTask: TaskInterface; // mozna też zapisać --> let newTask: TaskType;
+
 newTask = {
     name: "nowy task",
     done: true,
     createdAt: new Date(),
-};
+}
+*/
 /*
 let newTask: TaskType;
 

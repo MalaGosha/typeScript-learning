@@ -1,4 +1,4 @@
-import { Task, Category } from "./types/types.js";
+import {Category, Task} from "./types/types.js";
 import renderTasks from "./helpers/render-tasks.helper.js";
 import {render as renderCategories} from "./helpers/render-categories.helper.js";
 
@@ -18,21 +18,9 @@ const categories: Category[] = [
 ];
 
 const tasks: Task[] = [
-    {
-        name: "Wyrzucić śmieci",
-        done: false,
-        category: Category.GENERAL
-    },
-    {
-        name: "Pójść na siłkę",
-        done: true,
-        category: Category.GYM
-    },
-    {
-        name:"Nakarmić koty",
-        done: true,
-        category: Category.GENERAL
-    },
+  new Task("Wyrzucić śmieci", false, Category.HOBBY),
+  new Task("Zrobić zakupy", true, Category.WORK),
+  new Task("Umyć okna", true),
 ];
 
 const addTask = (task: Task) => {
@@ -45,28 +33,37 @@ const updateSelectedCategory = (newCategory: Category) => {
 
 addButtonElement.addEventListener("click", (e: Event) => {
     e.preventDefault();
-    addTask({
-        name: taskNameInputElement.value,
-        done: false,
-        category: selectedCategory,
-    });
+    const newTask: Task = new Task(
+        taskNameInputElement.value,
+        false,
+        selectedCategory
+    )
+    addTask(newTask);
+    newTask.logCreationDate("!!!");
     renderTasks(tasks, tasksContainerElement);
 });
 
-type TaskAsTuple = [string, Category, boolean];
 
-const task: TaskAsTuple = ["zrobić nogi", Category.GYM, false];
-const taskName = task[0];
-const taskCategory = task[1];
-const taskDoneStatus = task[2];
-
-
-addTask({name:taskName, category: taskCategory, done: taskDoneStatus});
 renderCategories(categories, categoriesContainerElement, updateSelectedCategory);
 renderTasks(tasks, tasksContainerElement);
 
 
+// classes
+const taskClassInstance = new Task("Zadanie z constructora", true, Category.GYM);
 
+console.log(taskClassInstance.name);
+
+
+/*
+TYPE TUPLE
+type TaskAsTuple = [string, Category, boolean];
+const task: TaskAsTuple = ["zrobić nogi", Category.GYM, false];
+const taskName = task[0];
+const taskCategory = task[1];
+const taskDoneStatus = task[2];*/
+
+
+/*
 
 // type unknown
 let get =(response: unknown) => response;
@@ -108,6 +105,7 @@ newTask = {
     done: true,
     createdAt: new Date(),
 }
+*/
 
 /*
 let newTask: TaskType;
@@ -119,13 +117,6 @@ newTask = {
 
 type Category = "work" | "hobby" | "general"; // interface Category = "work" | "hobby" | "general"; NIE ZADZIAŁA bo używamy obiektów do określania interface
 type CategoryAndNumber = Category | number;*/
-
-
-
-
-
-
-
 
 
 
